@@ -4,6 +4,8 @@ services:
     container_name: langserve
     ports:
       - 8080:8080
+    volumes:
+      - ./langserveapp/app:/code/app
     environment:
       QDRANT_HOST: qdrant
       QDRANT_PORT: 6333

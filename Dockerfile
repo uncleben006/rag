@@ -1,6 +1,6 @@
-FROM python:3.11-slim
+FROM python:3.12-slim
 
-RUN pip install poetry==1.6.1
+RUN pip install poetry==2.0.1
 
 RUN poetry config virtualenvs.create false
 
@@ -8,13 +8,13 @@ WORKDIR /code
 
 COPY ./pyproject.toml ./README.md ./poetry.lock* ./
 
-COPY ./package[s] ./packages
+COPY ./langserveapp/package[s] ./packages
 
 RUN poetry install  --no-interaction --no-ansi --no-root
 
-COPY ./app ./app
+COPY ./langserveapp/app ./app
 
-RUN poetry install --no-interaction --no-ansi
+RUN poetry install --no-interaction --no-ansi --no-root
 
 EXPOSE 8080
 
