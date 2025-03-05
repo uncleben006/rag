@@ -8,6 +8,8 @@ WORKDIR /code
 
 COPY ./pyproject.toml ./README.md ./poetry.lock* ./.env ./
 
+COPY ./MRT.pdf ./MRT.pdf
+
 COPY ./embedding ./embedding
 
 COPY ./langserveapp/package[s] ./packages
