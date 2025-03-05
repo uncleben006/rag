@@ -13,12 +13,13 @@ import os
 # 載入 env
 load_dotenv()
 openai_api_key = os.getenv("OPENAI_API_KEY")
+embedding_model = os.getenv("EMBEDDING_MODEL", "text-embedding-3-large")
+chat_model = os.getenv("CHAT_MODEL", "gpt-4o-mini")
 qdrant_host = os.getenv("QDRANT_HOST", "localhost")
 qdrant_port = os.getenv("QDRANT_PORT", "6333")
-# print(openai_api_key, qdrant_host, qdrant_port)
 
 # 使用 OpenAIEmbeddings
-embeddings_model = OpenAIEmbeddings(api_key=openai_api_key,model="text-embedding-3-large")
+embeddings_model = OpenAIEmbeddings(api_key=openai_api_key,model=embedding_model)
 
 # 連線 Qdrant
 client = QdrantClient(host=qdrant_host, port=int(qdrant_port))
@@ -43,7 +44,7 @@ retriever = qdrant.as_retriever(
 ))
 
 # 設定 openai model
-model = ChatOpenAI(api_key=openai_api_key, model="o1-mini")
+model = ChatOpenAI(api_key=openai_api_key, model=chat_model)
 
 # 設定 prompt
 prompt = ChatPromptTemplate.from_template("""請回答依照 context 裡的資訊來回答問題:

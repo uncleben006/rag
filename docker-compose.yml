@@ -9,7 +9,6 @@ services:
     environment:
       QDRANT_HOST: qdrant
       QDRANT_PORT: 6333
-      OPENAI_API_KEY: $OPENAI_API_KEY
   qdrant:
     image: qdrant/qdrant:latest
     container_name: qdrant
