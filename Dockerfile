@@ -8,6 +8,8 @@ WORKDIR /code
 
 COPY ./pyproject.toml ./README.md ./poetry.lock* ./.env ./
 
+COPY ./embedding ./embedding
+
 COPY ./langserveapp/package[s] ./packages
 
 RUN poetry install  --no-interaction --no-ansi --no-root
