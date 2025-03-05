@@ -23,7 +23,16 @@ embeddings_model = OpenAIEmbeddings(api_key=openai_api_key,model=embedding_model
 
 # 連線 Qdrant
 client = QdrantClient(host=qdrant_host, port=int(qdrant_port))
+
+# 確保 collection 存在避免報錯，又 text-embedding-3-large 模型的向量大小為 3072 維度
 collection_name = "mrt"
+try:
+    client.get_collection(collection_name=collection_name)
+except Exception:
+    client.create_collection(
+        collection_name=collection_name,
+        vectors_config=models.VectorParams(size=3072, distance=models.Distance.COSINE)
+    )
 qdrant = QdrantVectorStore(
     client=client,
     collection_name=collection_name,
