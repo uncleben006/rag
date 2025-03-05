@@ -12,7 +12,8 @@ dependencies = [
     "langchain-cli (>=0.0.35,<0.0.36)",
     "langchain-openai (>=0.3.7,<0.4.0)",
     "qdrant-client (>=1.13.2,<2.0.0)",
-    "pypdf (>=5.3.1,<6.0.0)"
+    "pypdf (>=5.3.1,<6.0.0)",
+    "dotenv (>=0.9.9,<0.10.0)"
 ]
 
 
